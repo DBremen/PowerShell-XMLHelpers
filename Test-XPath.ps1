@@ -1,4 +1,4 @@
-﻿function Test-XPath([xml]$xml = (Get-Content "$PSScriptRoot\inventory.xml" -Raw) ) {
+﻿function Test-XPath([xml]$xml = (Get-Content "$PSScriptRoot\data\inventory.xml" -Raw) ) {
     Add-Type -AssemblyName System.Windows.Forms
     Add-Type -AssemblyName System.Drawing
 
@@ -13,7 +13,7 @@
     $comboXPath = New-Object System.Windows.Forms.ComboBox
     #check if we are using the example xml and load the example XPath expressions
     if ($xml.DocumentElement.magazine){
-        $items = Import-Csv -Path "$PSScriptroot\XPathExamples.csv"
+        $items = Import-Csv -Path "$PSScriptroot\data\XPathExamples.csv"
         $comboXPath.Items.AddRange($items.Example)
         $comboXPath.AutoCompleteCustomSource.AddRange($items)
         $comboXPath.AutoCompleteMode = [System.Windows.Forms.AutoCompleteMode]::SuggestAppend

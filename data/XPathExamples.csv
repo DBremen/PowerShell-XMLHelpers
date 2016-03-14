@@ -1,0 +1,38 @@
+Example,Description
+bookstore,"Selects all nodes with the name ""bookstore"""
+bookstore/book,Selects all book elements that are children of bookstore
+/bookstore,Selects the root element bookstore
+//book,Selects all book elements no matter where they are in the document
+bookstore//book,"Selects all book elements that are descendant of the bookstore element, no matter where they are under the bookstore element"
+//@lang,Selects all attributes that are named lang
+/bookstore/book[1],Selects the first book element that is the child of the bookstore element.
+/bookstore/book[last()],Selects the last book element that is the child of the bookstore element
+/bookstore/book[last()-1],Selects the last but one book element that is the child of the bookstore element
+/bookstore/book[position()<3],Selects the first two book elements that are children of the bookstore element
+//title[@lang],Selects all the title elements that have an attribute named lang
+//title[@lang='en'],"Selects all the title elements that have a ""lang"" attribute with a value of ""en"""
+/bookstore/book[price>35.00],Selects all the book elements of the bookstore element that have a price element with a value greater than 35.00
+/bookstore/book[price>35.00]/title,Selects all the title elements of the book elements of the bookstore element that have a price element with a value greater than 35.00
+/bookstore/*,Selects all the child element nodes of the bookstore element
+//*,Selects all elements in the document
+//book/title | //book/price,Selects all the title AND price elements of all book elements
+//title | //price,Selects all the title AND price elements in the document
+/bookstore/book/title | //price,Selects all the title elements of the book element of the bookstore element AND all the price elements in the document
+/bookstore/child::book,Selects all book nodes that are children of bookstore node
+//book/attribute::lang,Selects the lang attribute of all book nodes
+/bookstore/magazine/child::*,Selects all element children of the magazine node
+//book/child::node(),Selects all children of all book nodes
+/bookstore/descendant::book,Selects all book descendants of the bookstore node
+//first-name/ancestor::author,Selects all author ancestors of all first-name nodes
+/bookstore/child::*/child::price,Selects all price grandchildren of the bookstore node
+//first-name | //last-name,A node set containing all <first-name> and <last-name> elements
+(bookstore/book | bookstore/magazine),A node set containing <book> or <magazine> elements inside a <bookstore> element.
+/bookstore/book | /bookstore/book/author,A node set containing all <book> elements and all <author> elements within <book> elements.
+(//book | //magazine)/price,The node set containing all <price> elements of either <book> or <magazine> elements.
+"//author[last-name = ""Bob""]",All <author> elements that contain at least one <last-name> element with the value Bob.
+"//author/degree[@from != ""Harvard""]","All <degree> elements that are children of <author> elements with a from attribute that is not equal to ""Harvard""."
+//author[last-name = //book/editor/last-name],All <author> elements that contain a <last-name> element that is the same as the <last-name> element inside the <editor> element under a book element.
+"//title[. = ""Trenton everywhere""]","All <title> elements whose string value is ""Trenton everywhere""."
+//book[@style='novel']/author/child::publication[last()],Selects the last <publication> element of the <author> element whose book parent style attribute equals 'novel'
+//first-name/parent::author,Selects the <author> elements that are the parents of first-name nodes.
+//book/child::editor/child::last-name,Selects the <last-name> child elements of the <editor> element that is a child of any book node.
