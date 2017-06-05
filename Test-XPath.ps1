@@ -1,4 +1,26 @@
-﻿function Test-XPath([xml]$xml = (Get-Content "$PSScriptRoot\data\inventory.xml" -Raw) ) {
+﻿function Test-XPath {
+     <#    
+    .SYNOPSIS
+       Learning aid for XPath expression. Visualize XPath expression using a windows forms application that shows the XML in a tree view.
+    .DESCRIPTION
+       Test-XPath loads XML into a tree-view and provides a combobox to type an XPath expression that is used to query parts of the XML, 
+       matching XML nodes are then highlighted within the tree-view. 
+       If no XML argument is provided Test-XPath will load the mentioned inventory.XML and populate the combobox with most of the example XPath expressions
+       from the Microsoft XPath reference. Test-XPath will hopefully help you to get a better grasp of XPath by example
+	.PARAMETER XML
+		XML to load into the tree view of the GUI. Defaults to load the example xml inside the \data sub-folder (Get-Content "$PSScriptRoot\data\inventory.xml" -Raw).
+	.EXAMPLE
+        #start the GUI with the example XML
+        Test-XPath
+    .LINK
+        https://powershellone.wordpress.com/2016/03/14/powershell-and-xml-part-1-visualize-xpath-expression/
+    .LINK
+        https://msdn.microsoft.com/en-us/library/ms256471%28v=vs.110%29.aspx
+    #>
+    [CmdletBinding()]
+    Param(
+        [xml]$XML = (Get-Content "$PSScriptRoot\data\inventory.xml" -Raw) 
+    )
     Add-Type -AssemblyName System.Windows.Forms
     Add-Type -AssemblyName System.Drawing
 
@@ -99,5 +121,3 @@
     })
     $form.ShowDialog()| Out-Null
 } 
-
-Test-XPath 
