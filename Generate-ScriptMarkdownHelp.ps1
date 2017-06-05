@@ -120,8 +120,8 @@ Some functions (by now only one) to make it easier to work with XML through Powe
 Test-XPath:
 ![](https://powershellone.files.wordpress.com/2016/03/test-xpath.gif)
 
-| Function | Location | Synopsis | Related Blog Post | Full Documentation |
-| --- | --- | --- | --- | --- |
+| Function | Synopsis | Related Blog Post | Full Documentation |
+| --- | --- | --- | --- |
 '@
     Import-Module platyps
     $env:path += ";$Path"
@@ -144,8 +144,7 @@ Test-XPath:
                     $link = $link.navigationLink.uri | Where-Object {$_ -like '*powershellone*'}
                 }
                 $mdFile = $function.Name + '.md'
-                $location = $("$($file.Directory.Name)\$($file.Name)")
-                $summaryTable += "`n| $($function.Name) | $location |$($help.Synopsis.Replace("`n"," ")) | $(if($link){"[Link]($($link.navigationLink.uri))"}) | $("[Link]($RepoUrl/blob/master/docs/$mdFile)") |"
+                $summaryTable += "`n| $($function.Name) |$($help.Synopsis.Replace("`n"," ")) | $(if($link){"[Link]($($link.navigationLink.uri))"}) | $("[Link]($RepoUrl/blob/master/docs/$mdFile)") |"
                 $documenation = New-MarkdownHelp -Command $function.Name -OutputFolder "$Path\docs" -Force
                 $text = (Get-Content -Path $documenation | Select-Object -Skip 6)
                 $index = $text.IndexOf('## SYNTAX')
